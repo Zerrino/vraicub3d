@@ -6,24 +6,27 @@
 /*   By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 15:21:18 by alexafer          #+#    #+#             */
-/*   Updated: 2024/07/25 02:04:48 by alexafer         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:34:13 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+int	player_update_util(t_player *player, double x, double y)
+{
+	return (((player->file.map[(int)(y + BORDER)][(int)(x + BORDER)] != 1
+			&& player->file.map[(int)(y + BORDER)][(int)(x - BORDER)] != 1
+			&& player->file.map[(int)(y - BORDER)][(int)(x + BORDER)] != 1
+			&& player->file.map[(int)(y - BORDER)][(int)(x - BORDER)] != 1)
+			&& (player->file.map[(int)(y + BORDER)][(int)(x + BORDER)] != 3
+			&& player->file.map[(int)(y + BORDER)][(int)(x - BORDER)] != 3
+			&& player->file.map[(int)(y - BORDER)][(int)(x + BORDER)] != 3
+			&& player->file.map[(int)(y - BORDER)][(int)(x - BORDER)] != 3)));
+}
+
 void	player_update(t_player *player, double x, double y)
 {
-	if ((player->file.map[(int)(y + BORDER)][(int)(x + BORDER)] != 1
-		&& player->file.map[(int)(y + BORDER)][(int)(x - BORDER)] != 1
-		&& player->file.map[(int)(y - BORDER)][(int)(x + BORDER)] != 1
-		&& player->file.map[(int)(y - BORDER)][(int)(x - BORDER)] != 1)
-		&&
-		(player->file.map[(int)(y + BORDER)][(int)(x + BORDER)] != 3
-		&& player->file.map[(int)(y + BORDER)][(int)(x - BORDER)] != 3
-		&& player->file.map[(int)(y - BORDER)][(int)(x + BORDER)] != 3
-		&& player->file.map[(int)(y - BORDER)][(int)(x - BORDER)] != 3)
-		)
+	if (player_update_until(player, x, y))
 	{
 		player->x = x;
 		player->y = y;
@@ -34,8 +37,7 @@ void	player_update(t_player *player, double x, double y)
 			&& player->file.map[(int)player->y][(int)(x - BORDER)] != 1
 			&& player->file.map[(int)player->y][(int)(x + BORDER)] != 1
 			&& player->file.map[(int)player->y][(int)(x - BORDER)] != 1)
-			&&
-			(player->file.map[(int)player->y][(int)(x + BORDER)] != 3
+			&& (player->file.map[(int)player->y][(int)(x + BORDER)] != 3
 			&& player->file.map[(int)player->y][(int)(x - BORDER)] != 3
 			&& player->file.map[(int)player->y][(int)(x + BORDER)] != 3
 			&& player->file.map[(int)player->y][(int)(x - BORDER)] != 3))
@@ -44,8 +46,7 @@ void	player_update(t_player *player, double x, double y)
 			&& player->file.map[(int)(y + BORDER)][(int)player->x] != 1
 			&& player->file.map[(int)(y - BORDER)][(int)player->x] != 1
 			&& player->file.map[(int)(y - BORDER)][(int)player->x] != 1)
-			&&
-			(player->file.map[(int)(y + BORDER)][(int)player->x] != 1
+			&& (player->file.map[(int)(y + BORDER)][(int)player->x] != 1
 			&& player->file.map[(int)(y + BORDER)][(int)player->x] != 1
 			&& player->file.map[(int)(y - BORDER)][(int)player->x] != 1
 			&& player->file.map[(int)(y - BORDER)][(int)player->x] != 1)
@@ -54,7 +55,7 @@ void	player_update(t_player *player, double x, double y)
 	}
 }
 
-int mouse_move(int x, int y, void *param)
+int	mouse_move(int x, int y, void *param)
 {
 	t_player	*player;
 
