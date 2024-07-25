@@ -6,7 +6,7 @@
 #    By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 09:46:53 by zerrino           #+#    #+#              #
-#    Updated: 2024/07/25 01:13:34 by alexafer         ###   ########.fr        #
+#    Updated: 2024/07/25 14:21:54 by alexafer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ MINI_DIR = minilibx
 LIBFT_DIR = libft
 
 SRC_FILES = main.c get_next_line.c get_next_line_utils.c parsing.c utils.c utils1.c utils2.c utils3.c utils4.c draw_wall.c\
-	render_scene.c render_scene1.c key_pressing.c player_finder.c animated.c opening.c
+	render_scene.c render_scene1.c key_pressing.c player_finder.c animated.c opening.c map.c
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

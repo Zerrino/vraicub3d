@@ -6,7 +6,7 @@
 /*   By: alexafer <alexafer@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 00:37:35 by alexafer          #+#    #+#             */
-/*   Updated: 2024/07/25 01:00:49 by alexafer         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:19:45 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 u_int64_t	get_time(void)
 {
 	struct timeval	tv;
+
 	if (gettimeofday(&tv, NULL))
 		return (0);
 	return ((tv.tv_sec * (u_int64_t)1000) + (tv.tv_usec / 1000));

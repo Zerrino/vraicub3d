@@ -6,7 +6,7 @@
 /*   By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 00:35:16 by alexafer          #+#    #+#             */
-/*   Updated: 2024/07/25 02:01:30 by alexafer         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:18:18 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@
 # include "../includes/get_next_line.h"
 # include "../libft/libft.h"
 
-# define SCREEN_WIDTH 640
-# define SCREEN_HEIGHT 480
-# define MAX_DEPTH 16
+# define SCREEN_WIDTH 1024
+# define SCREEN_HEIGHT 768
 # define PLAYER_MOVE_SPEED 0.08
 # define PLAYER_TURN_SPEED 0.05
 # define PLAYER_ROTATE_SPEED 0.05
@@ -31,6 +30,9 @@
 # define BORDER 0.05
 # define INTERVAL 100
 # define HITBOX_E 15
+# define SCALE_MAP 2
+# define X_PADDING 10
+# define Y_PADDING 10
 
 typedef struct s_file
 {
@@ -146,5 +148,7 @@ void		opening_door(t_player *player);
 void		set_data(t_player *player, int x);
 void		scene_data(t_player *player);
 int			mouse_move(int x, int y, void *param);
+void		map_cub(t_player *player, t_mlx *mlx);
+u_int64_t	get_time(void);
 
 #endif

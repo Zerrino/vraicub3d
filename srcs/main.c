@@ -6,7 +6,7 @@
 /*   By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:41:42 by alexafer          #+#    #+#             */
-/*   Updated: 2024/07/25 01:58:05 by alexafer         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:21:07 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	game_run(t_mlx mlx, t_texture textures[4], t_file file, t_player player)
 				&mlx.bpp, &mlx.size_line, &mlx.endian);
 		render_scene(&mlx, &player, textures);
 		mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img_ptr, 0, 0);
+		map_cub(&player, &mlx);
 		mlx_destroy_image(mlx.mlx_ptr, mlx.img_ptr);
 		mlx_do_sync(mlx.mlx_ptr);
 	}
@@ -104,6 +105,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	player = find_player(file.map, file.streak, file.len_max);
 	player.file = file;
+	player.time = 0;
 	if (set_up(&file, &mlx))
 		return (1);
 	if (game_run(mlx, textures, file, player))

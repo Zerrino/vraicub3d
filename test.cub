@@ -1,8 +1,11 @@
 SO ./img/stone.xpm
+
+
 NO ./img/mossy.xpm
-N1 ./img/purple.xpm
+N1 ./img/stone.xpm
 N2 ./img/purple.xpm
-N3 ./img/purple.xpm
+
+
 WE ./img/purple.xpm
 EA ./img/brick.xpm
 
