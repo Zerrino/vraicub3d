@@ -6,7 +6,7 @@
 /*   By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 00:35:16 by alexafer          #+#    #+#             */
-/*   Updated: 2024/07/23 17:19:24 by alexafer         ###   ########.fr       */
+/*   Updated: 2024/07/25 02:01:30 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <stdlib.h>
+# include <sys/time.h>
 # include "../minilibx/mlx.h"
 # include "../includes/get_next_line.h"
 # include "../libft/libft.h"
@@ -28,10 +29,15 @@
 # define PLAYER_ROTATE_SPEED 0.05
 # define MAX_ITERATIONS 1000
 # define BORDER 0.05
+# define INTERVAL 100
+# define HITBOX_E 15
 
 typedef struct s_file
 {
 	char	*no;
+	char	*n1;
+	char	*n2;
+	char	*n3;
 	char	*so;
 	char	*we;
 	char	*ea;
@@ -48,29 +54,32 @@ typedef struct s_file
 
 typedef struct s_player
 {
-	double	x;
-	double	new_x;
-	double	y;
-	double	new_y;
-	double	angle;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	perp_wall_dist;
-	double	wall_x;
-	int		map_x;
-	int		map_y;
-	int		step_x;
-	int		step_y;
-	int		side;
-	int		line_height;
-	int		hit;
-	int		tex_x;
-	int		texture_index;
-	t_file	file;
+	u_int64_t	time;
+	double		x;
+	double		new_x;
+	double		y;
+	double		new_y;
+	double		angle;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		perp_wall_dist;
+	double		wall_x;
+	int			last_x;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	int			side;
+	int			line_height;
+	int			hit;
+	int			hit_wall;
+	int			tex_x;
+	int			texture_index;
+	t_file		file;
 }	t_player;
 
 typedef struct s_mlx
@@ -132,5 +141,10 @@ void		rendering_wall(t_mlx *mlx, t_player *player, t_texture textures[4]);
 void		color_scene(t_mlx *mlx, t_player player);
 int			handle_keypress(int key, void *param);
 t_player	find_player(int **mapp, int w, int h);
+int			no_animation(t_player *player);
+void		opening_door(t_player *player);
+void		set_data(t_player *player, int x);
+void		scene_data(t_player *player);
+int			mouse_move(int x, int y, void *param);
 
 #endif

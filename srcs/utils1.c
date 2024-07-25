@@ -6,7 +6,7 @@
 /*   By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:22:53 by alexafer          #+#    #+#             */
-/*   Updated: 2024/07/23 15:54:28 by alexafer         ###   ########.fr       */
+/*   Updated: 2024/07/25 00:29:28 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ int	ft_free_file(t_file *file, int x)
 		return (x);
 	if (file->no)
 		free(file->no);
+	if (file->n1)
+		free(file->n1);
+	if (file->n2)
+		free(file->n2);
+	if (file->n3)
+		free(file->n3);
 	if (file->so)
 		free(file->so);
 	if (file->we)
@@ -66,6 +72,12 @@ void	ft_path(t_file *file, char *line)
 {
 	if (!file->no)
 		file->no = get_path("NO", line);
+	if (!file->n1)
+		file->n1 = get_path("N1", line);
+	if (!file->n2)
+		file->n2 = get_path("N2", line);
+	if (!file->n3)
+		file->n3 = get_path("N3", line);
 	if (!file->so)
 		file->so = get_path("SO", line);
 	if (!file->we)

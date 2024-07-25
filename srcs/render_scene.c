@@ -6,7 +6,7 @@
 /*   By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 14:17:48 by alexafer          #+#    #+#             */
-/*   Updated: 2024/07/23 17:24:21 by alexafer         ###   ########.fr       */
+/*   Updated: 2024/07/25 01:27:21 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ void	scene_loop(t_player *player)
 			player->map_y += player->step_y;
 			player->side = 1;
 		}
-		if (player->file.map[player->map_y][player->map_x] == 1)
+		if (player->file.map[player->map_y][player->map_x] == 1
+				|| player->file.map[player->map_y][player->map_x] == 3)
 			player->hit = 1;
 		iteration_count++;
 	}

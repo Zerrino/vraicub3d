@@ -6,7 +6,7 @@
 /*   By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:41:42 by alexafer          #+#    #+#             */
-/*   Updated: 2024/07/23 17:27:40 by alexafer         ###   ########.fr       */
+/*   Updated: 2024/07/25 01:58:05 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,18 @@ int	game_run(t_mlx mlx, t_texture textures[4], t_file file, t_player player)
 	load_texture(&mlx, &textures[1], file.no);
 	load_texture(&mlx, &textures[2], file.ea);
 	load_texture(&mlx, &textures[3], file.so);
+	if (file.n1)
+		load_texture(&mlx, &textures[4], file.n1);
+	if (file.n2)
+		load_texture(&mlx, &textures[5], file.n2);
+	if (file.n3)
+		load_texture(&mlx, &textures[6], file.n3);
 	if (mlx.flag)
 	{
 		ft_free_file(&file, 0);
 		return (err("error: unable to open xpm file\n"));
 	}
+	mlx_hook(mlx.win_ptr, 6, 0, mouse_move, &player);
 	mlx_hook(mlx.win_ptr, 2, (1), handle_keypress, &player);
 	mlx_hook(mlx.win_ptr, 17, (1 << 17), handle_close, &player);
 	while (1)
@@ -86,7 +93,7 @@ int	main(int argc, char *argv[])
 	t_mlx		mlx;
 	t_player	player;
 	t_file		file;
-	t_texture	textures[4];
+	t_texture	textures[7];
 
 	mlx.flag = 0;
 	ft_memset(&file, 0, sizeof(file));

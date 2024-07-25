@@ -6,7 +6,7 @@
 /*   By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 15:10:32 by alexafer          #+#    #+#             */
-/*   Updated: 2024/07/23 16:26:01 by alexafer         ###   ########.fr       */
+/*   Updated: 2024/07/25 00:37:11 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	get_texture_player(t_player *player)
 		if (player->step_y > 0)
 			player->texture_index = 3;
 		else
-			player->texture_index = 1;
+			player->texture_index = no_animation(player);
 	}
 }
 

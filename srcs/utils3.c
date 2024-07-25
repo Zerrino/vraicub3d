@@ -6,7 +6,7 @@
 /*   By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:34:44 by alexafer          #+#    #+#             */
-/*   Updated: 2024/07/23 17:21:48 by alexafer         ###   ########.fr       */
+/*   Updated: 2024/07/25 01:47:46 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	*map_line(char *line, int len_max)
 		{
 			if (line[i] == ' ' || line[i] == '\n')
 				map[i] = -1;
-			else if (line[i] == '0' || line[i] == '1')
+			else if (line[i] == '0' || line[i] == '1' || line[i] == '3')
 				map[i] = line[i] - '0';
 			else
 				map[i] = line[i];
@@ -79,6 +79,12 @@ int	verify_file(char *str, t_file *file)
 	if (fd == -1)
 		return (1);
 	tot = file->streak + 6;
+	if (file->n1)
+		tot++;
+	if (file->n2)
+		tot++;
+	if (file->n3)
+		tot++;
 	line = get_next_line(fd);
 	nb_line = 0;
 	while (line)
@@ -134,19 +140,19 @@ void	map_recursive(int **map, int i, int j, t_file *file)
 		file->flag = 1;
 		return ;
 	}
-	if (map[i][j + 1] == 0)
+	if (map[i][j + 1] == 0 || map[i][j + 1] == 3)
 		map_recursive(map, i, j + 1, file);
 	if (map[i][j + 1] == -1)
 		file->flag = 1;
-	if (map[i][j - 1] == 0)
+	if (map[i][j - 1] == 0 || map[i][j - 1] == 3)
 		map_recursive(map, i, j - 1, file);
 	if (map[i][j - 1] == -1)
 		file->flag = 1;
-	if (map[i + 1][j] == 0)
+	if (map[i + 1][j] == 0 || map[i + 1][j] == 3)
 		map_recursive(map, i + 1, j, file);
 	if (map[i + 1][j] == -1)
 		file->flag = 1;
-	if (map[i - 1][j] == 0)
+	if (map[i - 1][j] == 0 || map[i - 1][j] == 3)
 		map_recursive(map, i - 1, j, file);
 	if (map[i - 1][j] == -1)
 		file->flag = 1;

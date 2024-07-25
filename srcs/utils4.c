@@ -6,7 +6,7 @@
 /*   By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:38:55 by alexafer          #+#    #+#             */
-/*   Updated: 2024/07/23 17:23:08 by alexafer         ###   ########.fr       */
+/*   Updated: 2024/07/25 01:28:57 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	get_line_map(t_file *file, char *line)
 			file->len_max = ft_strlen(line);
 		file->streak++;
 	}
-	else if (file->streak && !is_present(line, " 10NSEW\n"))
+	else if (file->streak && !is_present(line, " 130NSEW\n"))
 	{
 		if (file->len_max < (int)ft_strlen(line))
 			file->len_max = ft_strlen(line);
@@ -83,7 +83,7 @@ void	get_alloc(t_file *file, char *line, int len_max)
 		file->map[streak2] = map_line(line, len_max);
 		streak2++;
 	}
-	else if (streak2 && !is_present(line, " 10NSEW\n"))
+	else if (streak2 && !is_present(line, " 103NSEW\n"))
 	{
 		file->map[streak2] = map_line(line, len_max);
 		streak2++;
